@@ -42,7 +42,7 @@ npm install brusc --save
 **Create your IoC context** to be used in the classes / functions / wherever declaring dependencies to inject:
 
 `ioc.js`
-```ecmascript 6
+```js
 import {iocInjector} from 'brusc'
 
 const IOC_CONTEXT = 'test-sample'
@@ -62,7 +62,7 @@ export {inject, IOC_CONTEXT}
 **Declare your instances** into the module:
 
 `SampleInitializer.js`
-```ecmascript 6
+```js
 // imports...
 import {iocModule} from 'brusc'
 
@@ -86,7 +86,7 @@ class SampleInitializer {
 **Use the injector** to assign the instances where they're needed
 
 `Sample.js`
-```ecmascript 6
+```js
 // ...
 class Sample {
   constructor({
@@ -123,7 +123,7 @@ class Sample {
 
 THe iocModule function creates the Container that will keep the injectable dependencies declaration.
 
-```ecmascript 6
+```js
 iocModule({
   module: 'module_id',
   initializer: ({singleton, prototype}) => {
@@ -194,13 +194,13 @@ The chain boolean (defaults to false) allows you to call the iocModule method wi
 
 The iocInjector gives access to the injectable dependencies from the Container.
 
-```ecmascript 6
+```js
 const myInstance = iocInjector('module_id')('key')
 ```
 
 It can be used that way but **a cleaner/maintenable usage**, would be to declare the prepared injector for the module this way:
  
-```ecmascript 6
+```js
 const inject = key => iocInjector('module_id')(key)
 //...
 const myInstance = inject('key')
